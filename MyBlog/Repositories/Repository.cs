@@ -14,9 +14,24 @@ namespace MyBlog.Repositories
         {
             _context = context;
         }
+
+        public void AddComment(Comment comment)
+        {
+            _context.Comments.Add(new Comment()
+            {
+                Content = comment.Content,
+                PostId = comment.PostId
+            });
+        }
+
         public void AddPost(Post post)
         {
             _context.Add(post);
+        }
+
+        public List<Comment> GetComments()
+        {
+            return _context.Comments.ToList();
         }
 
         public Post GetPost(int id) => _context.Posts.FirstOrDefault(p => p.Id == id);

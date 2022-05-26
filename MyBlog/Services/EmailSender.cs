@@ -24,7 +24,7 @@ namespace MyBlog.Services
             using (var client = new SmtpClient())
             {
                 client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate("pomirchiy2003@gmail.com", "yarik20031011");
+                client.Authenticate("pomirchiy2003@gmail.com", "*****");
                 client.Send(message);
                 client.Disconnect(true);
             }

@@ -17,6 +17,8 @@ namespace MyBlog.Models
         [Required]
         [Column(TypeName = "varchar(MAX)")]
         public string Content { get; set; }
+        public IEnumerable<Comment> Comments { get; set; }
+
     }
 }
     

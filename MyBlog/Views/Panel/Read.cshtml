@@ -1,11 +1,19 @@
-﻿@model MyBlog.Models.Post
-@*
- 
-*@
+﻿@model MyBlog.Models.ViewModels.PostCommentViewModel
+
 @{
+    ViewData["Title"] = "Read";
 }
 
+@Html.Raw(Model.Post.Content)
 
+@foreach (var comment in Model.Comments)
+{
+    <p>@comment.Content</p>
+}
 
-<h2>@Model.Title</h2>
-@Html.Raw(Model.Content)
+<form asp-controller="Panel" asp-action="AddComment" method="post">
+    <input asp-for="Comment.Content" />
+    <input asp-for="Comment.PostId" value="@Model.Post.Id" type="hidden" />
+    <button type="submit">send</button>
+</form>
+

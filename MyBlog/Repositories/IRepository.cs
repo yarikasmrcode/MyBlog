@@ -13,6 +13,8 @@ namespace MyBlog.Repositories
         public void AddPost(Post post);
         public void UpdatePost(Post post);
         public void RemoverPost(int id);
+        public List<Comment> GetComments();
         public Task<bool> SaveChanges();
+        public void AddComment(Comment comment);
     }
 }

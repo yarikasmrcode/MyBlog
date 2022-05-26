@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyBlog.Contexts;
+using MyBlog.Models;
+using MyBlog.Models.ViewModels;
 using MyBlog.Repositories;
 using System;
 using System.Collections.Generic;
@@ -30,7 +33,22 @@ namespace MyBlog.Controllers
         [HttpGet]
         public IActionResult Read(int id)
         {
-            return View(_repository.GetPost(id));
+            var post = _repository.GetPost(id);
+
+            return View(new PostCommentViewModel()
+            {
+                Post = post,
+                Comments = _repository.GetComments().Where(p => p.PostId == id).ToList()
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(Comment comment)
+        {
+            _repository.AddComment(comment);
+            await _repository.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
