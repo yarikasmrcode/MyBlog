@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyBlog.Contexts;
 using MyBlog.Repositories;
+using MyBlog.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,7 @@ namespace MyBlog
                 (Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IRepository, Repository>(); //service is created every time its asked to
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {

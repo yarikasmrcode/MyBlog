@@ -1,0 +1,11 @@
+﻿@model MyBlog.Models.Contact
+
+<h3>Contact from</h3>
+
+<form asp-controller="Email" asp-action="Index" method="post">
+    <h1>yo email</h1>
+    <input asp-for="Subject" />
+    <h1>content</h1>
+    <input asp-for="Content" />
+    <button type="submit">send</button>
+</form>
